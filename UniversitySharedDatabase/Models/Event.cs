@@ -30,13 +30,13 @@ namespace UniversitySharedDatabase.Models
 
 
         [Required(ErrorMessage = "UserClubRegId should not be blank")]
-        [ForeignKey("UserClub")]
-        public int UserClubRegId { get; set; }
+        [ForeignKey("Club")]
+        public int ClubId { get; set; }
 
         public int TotalAttendedStudents { get; set; }
 
-        public ICollection<UserEvent> UserEvents { get; set; }
-        public virtual UserClub UserClub { get; set; }
+        //public ICollection<UserEvent> UserEvents { get; set; }
+        //public virtual Club Club { get; set; }
 
 
     }

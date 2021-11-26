@@ -31,7 +31,7 @@ namespace UniversitySharedDatabase.Models
         public virtual User User { get; set; }
         public virtual Club Club { get; set; }
 
-        public virtual ICollection<Event> Events { get; set; }
+ 
 
     }
 }

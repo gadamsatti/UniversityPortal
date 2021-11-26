@@ -30,5 +30,7 @@ namespace UniversitySharedDatabase.Models
 
         public ICollection<Idea> Ideas { get; set; }
         public ICollection<UserClub> UserClubs { get; set; }
+
+        public ICollection<Event> Events { get; set; }
     }
 }

@@ -83,6 +83,6 @@ namespace UniversitySharedDatabase.Models
 
         public ICollection<UserService> UserServices { get; set; }
         public virtual SecurityQuestion SecurityQuestion { get; set; }
-       
+
     }
 }
