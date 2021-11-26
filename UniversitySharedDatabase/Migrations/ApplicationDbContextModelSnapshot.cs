@@ -105,6 +105,9 @@ namespace UniversitySharedDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClubId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -117,12 +120,9 @@ namespace UniversitySharedDatabase.Migrations
                     b.Property<int>("TotalAttendedStudents")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserClubRegId")
-                        .HasColumnType("int");
-
                     b.HasKey("EventId");
 
-                    b.HasIndex("UserClubRegId");
+                    b.HasIndex("ClubId");
 
                     b.ToTable("Events");
                 });
@@ -549,13 +549,13 @@ namespace UniversitySharedDatabase.Migrations
 
             modelBuilder.Entity("UniversitySharedDatabase.Models.Event", b =>
                 {
-                    b.HasOne("UniversitySharedDatabase.Models.UserClub", "UserClub")
+                    b.HasOne("UniversitySharedDatabase.Models.Club", "Club")
                         .WithMany("Events")
-                        .HasForeignKey("UserClubRegId")
+                        .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserClub");
+                    b.Navigation("Club");
                 });
 
             modelBuilder.Entity("UniversitySharedDatabase.Models.Idea", b =>
@@ -701,6 +701,8 @@ namespace UniversitySharedDatabase.Migrations
 
             modelBuilder.Entity("UniversitySharedDatabase.Models.Club", b =>
                 {
+                    b.Navigation("Events");
+
                     b.Navigation("Ideas");
 
                     b.Navigation("UserClubs");
@@ -754,11 +756,6 @@ namespace UniversitySharedDatabase.Migrations
                     b.Navigation("UserIdeas");
 
                     b.Navigation("UserServices");
-                });
-
-            modelBuilder.Entity("UniversitySharedDatabase.Models.UserClub", b =>
-                {
-                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }

@@ -107,6 +107,29 @@ namespace UniversitySharedDatabase.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    EventId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EventName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClubId = table.Column<int>(type: "int", nullable: false),
+                    TotalAttendedStudents = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.EventId);
+                    table.ForeignKey(
+                        name: "FK_Events_Clubs_ClubId",
+                        column: x => x.ClubId,
+                        principalTable: "Clubs",
+                        principalColumn: "ClubId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -196,6 +219,35 @@ namespace UniversitySharedDatabase.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserEvents",
+                columns: table => new
+                {
+                    UserEventID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false),
+                    Attendence = table.Column<bool>(type: "bit", nullable: false),
+                    LikesOrDislike = table.Column<bool>(type: "bit", nullable: false),
+                    Suggestion = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserEvents", x => x.UserEventID);
+                    table.ForeignKey(
+                        name: "FK_UserEvents_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "EventId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserEvents_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserGrievances",
                 columns: table => new
                 {
@@ -278,61 +330,9 @@ namespace UniversitySharedDatabase.Migrations
                         column: x => x.IdeaId,
                         principalTable: "Ideas",
                         principalColumn: "IdeaId"
-                       );
+                        );
                     table.ForeignKey(
                         name: "FK_UserIdeas_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId"
-                       );
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    EventId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EventName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserClubRegId = table.Column<int>(type: "int", nullable: false),
-                    TotalAttendedStudents = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.EventId);
-                    table.ForeignKey(
-                        name: "FK_Events_UserClubs_UserClubRegId",
-                        column: x => x.UserClubRegId,
-                        principalTable: "UserClubs",
-                        principalColumn: "UserClubRegId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserEvents",
-                columns: table => new
-                {
-                    UserEventID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    Attendence = table.Column<bool>(type: "bit", nullable: false),
-                    LikesOrDislike = table.Column<bool>(type: "bit", nullable: false),
-                    Suggestion = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserEvents", x => x.UserEventID);
-                    table.ForeignKey(
-                        name: "FK_UserEvents_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "EventId"
-                       );
-                    table.ForeignKey(
-                        name: "FK_UserEvents_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId"
@@ -389,9 +389,9 @@ namespace UniversitySharedDatabase.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_UserClubRegId",
+                name: "IX_Events_ClubId",
                 table: "Events",
-                column: "UserClubRegId");
+                column: "ClubId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ideas_ClubId",
@@ -475,6 +475,9 @@ namespace UniversitySharedDatabase.Migrations
                 name: "Shares");
 
             migrationBuilder.DropTable(
+                name: "UserClubs");
+
+            migrationBuilder.DropTable(
                 name: "UserEvents");
 
             migrationBuilder.DropTable(
@@ -485,6 +488,9 @@ namespace UniversitySharedDatabase.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserServices");
+
+            migrationBuilder.DropTable(
+                name: "DesignationCouncils");
 
             migrationBuilder.DropTable(
                 name: "Events");
@@ -502,13 +508,7 @@ namespace UniversitySharedDatabase.Migrations
                 name: "Services");
 
             migrationBuilder.DropTable(
-                name: "UserClubs");
-
-            migrationBuilder.DropTable(
                 name: "Clubs");
-
-            migrationBuilder.DropTable(
-                name: "DesignationCouncils");
 
             migrationBuilder.DropTable(
                 name: "Users");
