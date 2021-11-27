@@ -13,24 +13,29 @@ namespace UniversitySharedDatabase.Models
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClubId { get; set; }
+
+
         [Required(ErrorMessage = "Please Enter ClubName e.g. Aaron")]
         [DisplayName("Club Name")]
         [StringLength(30, MinimumLength = 5)]
-        [RegularExpression("^[A-Za-z]{4,30}$")]
-
-
+        /*[RegularExpression("^[A-Za-z]{4,30}$")]*/
         public string ClubName { get; set; }
+
+
         [Required(ErrorMessage = "Please Enter Details e.g. Aaron")]
         [DisplayName("Details")]
-        [StringLength(150, MinimumLength = 30)]
-        [RegularExpression("^[A-Za-z]{4,30}$")]
+        [StringLength(150, MinimumLength = 5)]
+        /*[RegularExpression("^[A-Za-z]{4,30}$")]*/
         public string Details { get; set; }
+
+
         [Required]
         public String Eligibility { get; set; }
 
-        public ICollection<Idea> Ideas { get; set; }
+
+        /*public ICollection<Idea> Ideas { get; set; }
         public ICollection<UserClub> UserClubs { get; set; }
 
-        public ICollection<Event> Events { get; set; }
+        public ICollection<Event> Events { get; set; }*/
     }
 }

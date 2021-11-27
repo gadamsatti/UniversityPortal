@@ -39,7 +39,7 @@ namespace EventWebApp.Controllers
         }
 
 
-        //this is to generate report of the event
+        //this is to generate report of the event for admin
         [HttpGet]
         [Route("{filter}")]
         public async Task<IActionResult> GetAllEvents(string filter)
@@ -71,14 +71,58 @@ namespace EventWebApp.Controllers
         }
 
 
+        //Get Event By EventId DOUT
         [HttpGet]
         [Route("{eventId}")]
-        public async Task<IActionResult> GetEventById(int eventId)
+        public async Task<IActionResult> GetEventById([FromRoute]int eventId)
         {
 
           var eventDetail = await  _context.Events.Where(e => e.EventId == eventId).FirstOrDefaultAsync();
             return Ok(eventDetail);
         }
+
+        //Search For Event Using EventName
+        [HttpGet]
+        [Route("{eventName}")]
+        public async Task<IActionResult> GetEventByName(string eventName)
+        {
+            var eventDetail = await _context.Events.Where(e => e.EventName.Contains(eventName)).ToListAsync();
+
+            return Ok(eventDetail);
+        }
+
+
+        //GetEvents Between Given Dates Dates
+        [HttpGet]
+        public async Task<IActionResult> GetEventDate(DateTime startDate, DateTime endDate)
+        {
+            var events=await _context.Events.Where(e => e.StartDate == startDate & e.EndDate == endDate).ToListAsync();
+
+            return Ok(events);
+        }
+
+        
+        // feature Not Added in Data base 
+        //Get All Events By Category
+
+        /*public async Task<IActionResult> GetAllEventsByCategory(string category)
+        {
+            _context.Events.
+        }*/
+
+
+
+        //Funtionality Not Need here u can update in user event
+        //Update Event Attendence
+
+       /* public Task<IActionResult> UpdateAttendence(int )
+        {
+
+        }*/
+
+
+
+
 
     }
 }
