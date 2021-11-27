@@ -28,7 +28,7 @@ namespace UniversitySharedDatabase.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
-        /*public string Category { get; set; }*/
+        public string Category { get; set; }
 
 
         [Required(ErrorMessage = "UserClubRegId should not be blank")]

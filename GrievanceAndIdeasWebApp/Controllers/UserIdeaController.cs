@@ -18,10 +18,8 @@ namespace GrievanceAndIdeasWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUserIdea([FromBody] UserIdea idea)
         {
-
             _context.UserIdeas.Add(idea);
             await _context.SaveChangesAsync();
-
             return Ok(idea);
         }
 
@@ -32,10 +30,9 @@ namespace GrievanceAndIdeasWebApp.Controllers
         public async Task<IActionResult> UpdateUserIdea(int ideaId,UserIdea upComment)
         {
             var userUpdateComment = await _context.UserIdeas.FindAsync(ideaId);
-
+            userUpdateComment.LikeStatus = upComment.LikeStatus;
             userUpdateComment.Comments = upComment.Comments;
               await _context.SaveChangesAsync();
-
                 return Ok(upComment);
             
         }

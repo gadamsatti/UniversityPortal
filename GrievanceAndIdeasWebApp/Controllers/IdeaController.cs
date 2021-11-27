@@ -31,7 +31,7 @@ namespace GrievanceAndIdeasWebApp.Controllers
         //Get All Ideas of User using clubId
         [HttpGet]
         [Route("{clubId}")]
-        public async Task<IActionResult> GetAllIdeaByClubId(int clubId)
+        public async Task<IActionResult> GetAllIdeaByClubId([FromRoute]int clubId)
         {
             var clubIdeasDetails = await _context.Ideas.Where(e=>e.ClubId==clubId).ToListAsync();
 

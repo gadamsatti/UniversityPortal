@@ -32,16 +32,15 @@ namespace EventWebApp.Controllers
 
 
         //Update User attendence,like/dislike, comments after register event
-        [HttpPut] //DOUT
+        [HttpPut]
+        [Route("{userEventId}")]
         public async Task<IActionResult> UpdateUserEvent(int userEventId, [FromBody]UserEvent userEvent)
         {
             var userEventDetails = await _context.UserEvents.FindAsync(userEventId);
 
             userEventDetails.Suggestion = userEvent.Suggestion;
-            userEventDetails.Attendence = true;
-            userEventDetails.LikesOrDislike = true; ///DOUT
-
-
+            userEventDetails.Attendence = userEvent.Attendence;
+            userEventDetails.LikesOrDislike = userEvent.LikesOrDislike; 
 
             await _context.SaveChangesAsync();
 
@@ -49,14 +48,16 @@ namespace EventWebApp.Controllers
 
         }
 
-        // Get All UsersBy EventId
+
+
+        // Get All Users By EventId
         [HttpGet]
         [Route("{eventId}")]
         public async Task<IActionResult> GetAllUsersByEventId(int eventId)
         {
-            var usersDetails = await _context.UserEvents.Where(e => e.EventId == eventId).ToListAsync();
+            var allUsersRegistered = await _context.UserEvents.Where(e => e.EventId == eventId).ToListAsync();
 
-            return Ok(usersDetails);
+            return Ok(allUsersRegistered);
         }
 
        

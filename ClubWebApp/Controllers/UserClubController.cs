@@ -21,7 +21,7 @@ namespace ClubWebApp.Controllers
         public async Task<IActionResult> AddUserClubDetails([FromBody]UserClub userClub)
         {
             /*userClub.DesgId = 1;*/
-            await _context.AddAsync(userClub);
+             _context.UserClubs.Add(userClub);
 
             await _context.SaveChangesAsync();
 
@@ -29,25 +29,27 @@ namespace ClubWebApp.Controllers
         }
 
         
+
+
         //Admin Can Delete User from Club or User Can Leave Club
         [HttpDelete]
         [Route("{clubId}")]
-        public async Task<IActionResult> DeleteUserClubDetails([FromRoute]int clubId)
+        public async Task<IActionResult> DeleteUserClubDetails([FromRoute]int clubId,int userId)
         {
             try
             {
-                var userClubDetails = await _context.UserClubs.FindAsync(clubId);
-
+                var userClubDetails = await _context.UserClubs.Where(c => c.UserId == userId && c.ClubId ==clubId).FirstOrDefaultAsync();
                  _context.UserClubs.Remove(userClubDetails);
-
                 await _context.SaveChangesAsync();
                 return Ok();
             }
             catch(Exception)
             {
-                throw;
+                throw new Exception("User not registered for the club");
             }
         }
+
+
 
 
         //Admin Can See All The Club Members Using ClubId
@@ -56,7 +58,6 @@ namespace ClubWebApp.Controllers
         public async Task<IActionResult> GetAllUsersByClubId([FromRoute] int clubId)
         {
             var clubMembers = await _context.UserClubs.Where(e=>e.ClubId==clubId).ToListAsync();
-
             return Ok(clubMembers);
         }
 

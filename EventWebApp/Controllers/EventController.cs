@@ -94,31 +94,37 @@ namespace EventWebApp.Controllers
 
         //GetEvents Between Given Dates Dates
         [HttpGet]
+        [Route("{startDate}/{endDate}")]
         public async Task<IActionResult> GetEventDate(DateTime startDate, DateTime endDate)
         {
-            var events=await _context.Events.Where(e => e.StartDate == startDate & e.EndDate == endDate).ToListAsync();
-
+            var events=await _context.Events.Where(e => e.StartDate >= startDate && e.StartDate <= endDate).ToListAsync();
             return Ok(events);
         }
 
-        
+
         // feature Not Added in Data base 
         //Get All Events By Category
-
-        /*public async Task<IActionResult> GetAllEventsByCategory(string category)
+        [HttpGet]
+        [Route("{category}")]
+        public async Task<IActionResult> GetAllEventsByCategory(string category)
         {
-            _context.Events.
-        }*/
+          var eventList = await _context.Events.Where(e => e.Category == category).ToListAsync();
+            return Ok(eventList);
+        }
 
 
 
         //Funtionality Not Need here u can update in user event
         //Update Event Attendence
-
-       /* public Task<IActionResult> UpdateAttendence(int )
+        [HttpGet]
+        [Route("{eventId}")]
+        public async Task<IActionResult> UpdateAttendes(int eventId)
         {
-
-        }*/
+           var eventObj =await _context.Events.Where(e => e.EventId == eventId).FirstOrDefaultAsync();
+            eventObj.TotalAttendedStudents = +1;
+           await _context.SaveChangesAsync();
+            return Ok(eventObj.TotalAttendedStudents);
+        }
 
 
 

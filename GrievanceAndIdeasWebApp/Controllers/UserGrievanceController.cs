@@ -20,11 +20,7 @@ namespace GrievanceAndIdeasWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUserGrievance([FromBody]UserGrievance userGrievance)
         {
-           
-
-            //userGrievance.Date = DateTime.Now;
-
-
+          
              _context.UserGrievances.Add(userGrievance);
             await _context.SaveChangesAsync();
 
@@ -44,31 +40,32 @@ namespace GrievanceAndIdeasWebApp.Controllers
 
         }
 
-        //Admin do reply for user Grievance and update status Date resolution time and reply
-        [HttpPut]
-        [Route("{refrenceId}")]
-        public async Task<IActionResult> ReplyUserGrievance(int refrenceId,UserGrievance userGrievance)
+
+
+        //Admin can reply for user Grievance
+        [HttpGet]
+        [Route("{refrenceId}/{reply}")]
+        public async Task<IActionResult> ReplyUserGrievance(int refrenceId,string reply)
         {
             var userGrievanceDetails = await _context.UserGrievances.FindAsync(refrenceId);
 
-            userGrievanceDetails.Reply = userGrievance.Reply;
-
-            userGrievanceDetails.StatusId = userGrievance.StatusId;
-
-            userGrievanceDetails.ResolutionDate = userGrievance.ResolutionDate;
+            userGrievanceDetails.Reply = reply;
 
             await _context.SaveChangesAsync();
 
-            return Ok(refrenceId);
+            return Ok(userGrievanceDetails);
         }
 
 
-        // Admin Update user Grievance Status I think No need
-       /* [HttpPut]
-        [Route("{status}")]
-        public async Task<IActionResult>  UpdateUserGrievanceStatus(string status)
+        // Admin Update user Grievance Status
+        [HttpGet]
+        [Route("{status}/{referenceId}")]
+        public async Task<IActionResult> UpdateUserGrievanceStatus(string status,int referenceId)
         {
-            var userGrievanceDetails = await _context.UserGrievances.FindAsync(refrenceId);
-        }*/
+            var userGrievanceDetails = await _context.UserGrievances.FindAsync(referenceId);
+            userGrievanceDetails.StatusId = await _context.StatusFeilds.Where(s => s.Status == status).Select(s => s.StatusId).FirstOrDefaultAsync();
+            await _context.SaveChangesAsync();
+            return Ok(userGrievanceDetails);
+        }
     }
 }

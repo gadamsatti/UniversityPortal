@@ -23,7 +23,7 @@ namespace UserWebApp.Controllers
             _context.Shares.Add(userIdeaShare);
            await _context.SaveChangesAsync();
 
-            return Ok("at to work");
+            return Ok(userIdeaShare);
         }
     }
 }

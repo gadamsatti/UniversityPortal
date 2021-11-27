@@ -23,7 +23,6 @@ namespace EventWebApp.Controllers
             var service = await _context.Services.Where(s => s.ServiceId == userService.ServiceId).FirstOrDefaultAsync();
 
 
-
             var userServiceVolunteerCount = _context.UserServices.Where(u => u.ServiceId == userService.ServiceId).Count();
 
             if (userServiceVolunteerCount < service.VolunteerCount  )

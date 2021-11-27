@@ -46,7 +46,7 @@ namespace ClubWebApp.Controllers
 
             catch(Exception)
             {
-                throw;
+                throw new Exception("No clubID found");
             }
             
         }
@@ -68,13 +68,13 @@ namespace ClubWebApp.Controllers
             return Ok(club);
         }
 
-        //Get all Club Details For Admin
 
+
+        //Get all Club Details For Admin
         [HttpGet]
         public async Task<IActionResult> GetAllClubDetails()
         {
             var clubDetails = await _context.Clubs.ToListAsync();
-
             return Ok(clubDetails);
         }
 

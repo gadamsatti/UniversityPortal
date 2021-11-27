@@ -37,8 +37,7 @@ namespace EventWebApp.Controllers
             var serviceObject = await _context.Services.FindAsync(serviceId);
 
             serviceObject.BeginDate = service.BeginDate;
-            /*serviceObject.VolunteerCount = serviceObject.VolunteerCount + 1;*/
-
+            serviceObject.VolunteerCount = service.VolunteerCount;
             await _context.SaveChangesAsync();
 
             return Ok(service);
@@ -47,7 +46,8 @@ namespace EventWebApp.Controllers
         //Get All Services Monthly,Halfyearly,Yearly
 
         [HttpGet]
-        public async Task<IActionResult> GetAllServices( string filter)
+        [Route("{filter}")]
+        public async Task<IActionResult> GetAllServices(string filter)
         {
             if (filter == "Montly")
             {
