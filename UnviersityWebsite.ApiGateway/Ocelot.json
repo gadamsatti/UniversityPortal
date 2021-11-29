@@ -1,0 +1,483 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Auth/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5005
+        }
+      ],
+      "UpstreamPathTemplate": "/AuthService/Auth/"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Club/CreateClubDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Club/CreateClubDetails"
+    }, //CreateClubDetails
+
+
+    {
+      "DownstreamPathTemplate": "/api/Club/DeleteClubDeatils/{clubId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Club/DeleteClubDeatils/{clubId}"
+    }, //DeleteClubDeatils
+
+
+    {
+      "DownstreamPathTemplate": "/api/Club/UpdateClubDetails/{clubId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Club/UpdateClubDetails/{clubId}"
+    }, //UpdateClubDetails
+
+
+    {
+      "DownstreamPathTemplate": "/api/Club/GetAllClubDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Club/GetAllClubDetails"
+    }, //GetAllClubDetails
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserClub/AddUserClubDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/UserClub/AddUserClubDetails"
+    }, //AddUserClubDetails
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserClub/DeleteUserClubDetails/{clubId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserClub/DeleteUserClubDetails/{clubId}"
+    }, //DeleteUserClubDetails
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserClub/GetAllUsersByClubId/{clubId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserClub/GetAllUsersByClubId/{clubId}"
+    }, //GetAllUsersByClubId
+
+
+    {
+      "DownstreamPathTemplate": "/api/Event/CreateEvent",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/CreateEvent"
+    }, //CreateEvent
+
+    {
+      "DownstreamPathTemplate": "/api/Event/DeleteEvent/{eventId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/DeleteEvent/{eventId}"
+    }, //DeleteEvent
+
+
+    {
+      "DownstreamPathTemplate": "/api/Event/GetAllEvents/{filter}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/GetAllEvents/{filter}"
+    }, //GetAllEvents
+
+
+    {
+      "DownstreamPathTemplate": "/api/Event/GetEventById/{eventId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/GetEventById/{eventId}"
+    }, //GetEventById
+
+
+    {
+      "DownstreamPathTemplate": "/api/Event/GetEventByName/{eventName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/GetEventByName/{eventName}"
+    }, //GetEventByName
+
+    {
+      "DownstreamPathTemplate": "/api/Event/GetEventDate/{startDate}/{endDate}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/GetEventDate/{startDate}/{endDate}"
+    }, //GetEventDate
+
+
+    {
+      "DownstreamPathTemplate": "/api/Event/GetAllEventsByCategory/{category}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/GetAllEventsByCategory/{category}"
+    }, //GetAllEventsByCategory
+
+
+    {
+      "DownstreamPathTemplate": "/api/Event/UpdateAttendes/{eventId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Event/UpdateAttendes/{eventId}"
+    }, //UpdateAttendes
+
+    {
+      "DownstreamPathTemplate": "/api/Service/CreateService",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Service/CreateService"
+    }, //CreateService
+
+    {
+      "DownstreamPathTemplate": "/api/Service/UpdateServiceDetails/{serviceId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Service/UpdateServiceDetails/{serviceId}"
+    }, //UpdateServiceDetails
+
+    {
+      "DownstreamPathTemplate": "/api/Service/GetAllServices/{filter}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Service/GetAllServices/{filter}"
+    }, //GetAllServices
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserEvent/CreateUserEvent",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserEvent/CreateUserEvent"
+    }, //CreateUserEvent
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserEvent/UpdateUserEvent/{userEventId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserEvent/UpdateUserEvent/{userEventId}"
+    }, //UpdateUserEvent
+
+    {
+      "DownstreamPathTemplate": "/api/UserEvent/GetAllUsersByEventId/{eventId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserEvent/GetAllUsersByEventId/{eventId}"
+    }, //GetAllUsersByEventId
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserService/CreateUserService",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserService/CreateUserService"
+    }, //CreateUserService
+
+
+    {
+      "DownstreamPathTemplate": "/api/Idea/AddIdea",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Idea/AddIdea"
+    }, //AddIdea
+
+
+    {
+      "DownstreamPathTemplate": "/api/Idea/GetAllIdeaByClubId/{clubId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Idea/GetAllIdeaByClubId/{clubId}"
+    }, //GetAllIdeaByClubId
+
+    {
+      "DownstreamPathTemplate": "/api/UserGrievance/CreateUserGrievance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserGrievance/CreateUserGrievance"
+    }, //CreateUserGrievance
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserGrievance/GetAllGrievances",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserGrievance/GetAllGrievances"
+    }, //GetAllGrievances
+
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserGrievance/ReplyUserGrievance/{refrenceId}/{reply}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserGrievance/ReplyUserGrievance/{refrenceId}/{reply}"
+    }, //ReplyUserGrievance
+
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserGrievance/UpdateUserGrievanceStatus/{status}/{referenceId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserGrievance/UpdateUserGrievanceStatus/{status}/{referenceId}"
+    }, //UpdateUserGrievanceStatus
+
+    {
+      "DownstreamPathTemplate": "/api/UserIdea/AddUserIdea",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserIdea/AddUserIdea"
+    }, //AddUserIdea
+
+
+    {
+      "DownstreamPathTemplate": "/api/UserIdea/UpdateUserIdea/{ideaId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+
+      "UpstreamPathTemplate": "/UserIdea/UpdateUserIdea/{ideaId}"
+    }, //UpdateUserIdea
+
+
+
+    {
+      "DownstreamPathTemplate": "/api/Shared/CreateSharedDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+
+      "UpstreamPathTemplate": "/Shared/CreateSharedDetails"
+    }, //CreateSharedDetails
+
+
+    {
+      "DownstreamPathTemplate": "/api/User/CreateUser",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+
+      "UpstreamPathTemplate": "/User/CreateUser"
+    }, //CreateUser
+
+
+    {
+      "DownstreamPathTemplate": "/api/User/GetUserById/{userId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+
+      "UpstreamPathTemplate": "/User/GetUserById/{userId}"
+    }, //GetUserById
+
+    {
+      "DownstreamPathTemplate": "/api/User/UpdateUserDetails/{userId}/{password}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+
+      "UpstreamPathTemplate": "/User/UpdateUserDetails/{userId}/{password}"
+    } //UpdateUserDetails
+
+
+  ],
+    "GlobalConfiguration": {
+      "BaseUrl": "http://localhost:9000"
+    }
+}

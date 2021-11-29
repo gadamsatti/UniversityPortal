@@ -1,0 +1,93 @@
+﻿@model UniversityPortal.Models.SignInModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Login</title>
+    <link rel="stylesheet" type="text/css" href="~/Dummy/assets/css/logincss.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <img class="wave" src="~/Dummy/assets/img/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="~/Dummy/assets/img/bg.svg">
+        </div>
+        <div class="login-content">
+            <form method="post">
+                @*asp-action="Login" asp-controller="Account"*@
+                <img src="~/Dummy/assets/img/avatar.svg">
+                <h2 class="title">UNIVERSITY</h2>
+
+
+                @*<div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"asp-for="Identity" value="option2" required>
+            <label class="form-check-label" for="exampleRadios2">
+                Admin
+                &nbsp;
+            </label>
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" asp-for="Identity"value="option1" required>
+            <label class="form-check-label" for="exampleRadios1">
+                User
+            </label>
+        </div>*@
+
+                @* <div class="input-div one">
+            <div class="i">
+                <i class="fas fa-user"></i>
+            </div>
+
+
+            <div class="div">
+                <h5>UserId</h5>
+                <input type="text" asp-for="UserId" name="UserId" class="input" required>
+            </div>
+        </div>*@
+
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+
+                    <div class="div">
+                        <h5>Email</h5>
+                        <input type="email" asp-for="Email" name="Email" class="input" required>
+                    </div>
+                </div>
+
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" asp-for="Password" class="input" required>
+                    </div>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="RememberMe" /><h7>RememberMe</h7>
+                    </label>
+                </div>
+
+                <a href="#">Forgot Password?</a>
+                <input type="submit" class="btn" value="Login">
+
+                <div>
+                    <p>Click <a asp-action="Signup" asp-controller="Account">here</a> to SignUp</p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Dummy/assets/js/loginmain.js"></script>
+</body>
+</html>

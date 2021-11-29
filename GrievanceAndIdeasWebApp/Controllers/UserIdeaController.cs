@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using UniversitySharedDatabase.Models;
 
 namespace GrievanceAndIdeasWebApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller][action]")]
+    [Authorize]
     [ApiController]
     public class UserIdeaController : ControllerBase
     {

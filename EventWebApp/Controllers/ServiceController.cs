@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ using UniversitySharedDatabase.Models;
 namespace EventWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize]
     [ApiController]
     public class ServiceController : ControllerBase
     {
@@ -36,6 +38,7 @@ namespace EventWebApp.Controllers
         {
             var serviceObject = await _context.Services.FindAsync(serviceId);
 
+            serviceObject.ServiceName = service.ServiceName;
             serviceObject.BeginDate = service.BeginDate;
             serviceObject.VolunteerCount = service.VolunteerCount;
             await _context.SaveChangesAsync();

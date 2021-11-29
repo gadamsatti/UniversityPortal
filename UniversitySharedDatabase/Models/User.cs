@@ -10,7 +10,7 @@ namespace UniversitySharedDatabase.Models
 {
     public class User
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int UserId { get; set; }
       
         [Required(ErrorMessage = "Please Enter Name e.g. Aaron")]
@@ -41,10 +41,7 @@ namespace UniversitySharedDatabase.Models
 
 
 
-        [DisplayName("Phone Number")]
-        //(372) 587-2335
-        [RegularExpression(@"^\([0-9]{3}\) [1-9]{3}-[1-9]{4}$")]
-        [Required(ErrorMessage = "Phone number should not be blank eg. (372) 587-2335")]
+        
         public string PhoneNo { get; set; }
 
 
@@ -62,16 +59,19 @@ namespace UniversitySharedDatabase.Models
 
 
 
-        [Required(ErrorMessage = "Question should not be blank")]
+       /* [Required(ErrorMessage = "Question should not be blank")]
         [ForeignKey("SecurityQuestion")]
-        public int QuId { get; set; }
+        public int QuId { get; set; }*/
+
+        
+       /* public string Role { get; set; }*/
 
 
-        [DisplayName("Security Answer")]
+        /*[DisplayName("Security Answer")]
         [Required(ErrorMessage = "Security should not be blank")]
-        public string SecurityAns { get; set; }
+        public string SecurityAns { get; set; }*/
 
-        public ICollection<Idea> Ideas { get; set; }
+       /* public ICollection<Idea> Ideas { get; set; }
 
         public ICollection<UserClub> UserClubs { get; set; }
 
@@ -81,8 +81,9 @@ namespace UniversitySharedDatabase.Models
 
         public ICollection<UserIdea> UserIdeas { get; set; }
 
-        public ICollection<UserService> UserServices { get; set; }
-        public virtual SecurityQuestion SecurityQuestion { get; set; }
+        public ICollection<UserService> UserServices { get; set; }*/
+
+       /* public virtual SecurityQuestion SecurityQuestion { get; set; }*/
 
     }
 }

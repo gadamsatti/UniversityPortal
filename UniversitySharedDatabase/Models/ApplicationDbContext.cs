@@ -34,7 +34,8 @@ namespace UniversitySharedDatabase.Models
         public DbSet<Share> Shares { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<DesignationCouncil> DesignationCouncils { get; set; }
-        public DbSet<SecurityQuestion> SecurityQuestions { get; set; }
+
+        //public DbSet<SecurityQuestion> SecurityQuestions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

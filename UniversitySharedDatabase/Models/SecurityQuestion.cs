@@ -17,6 +17,6 @@ namespace UniversitySharedDatabase.Models
         [Required(ErrorMessage = "Security Question should not be blank")]
         public string Question { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+       /* public virtual ICollection<User> Users { get; set; }*/
     }
 }

@@ -11,8 +11,8 @@ namespace UniversitySharedDatabase.Migrations
                 name: "Clubs",
                 columns: table => new
                 {
-                    ClubId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClubId = table.Column<int>(type: "int", nullable: false),
+                        /*.Annotation("SqlServer:Identity", "1, 1"),*/
                     ClubName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Details = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Eligibility = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -48,7 +48,7 @@ namespace UniversitySharedDatabase.Migrations
                     table.PrimaryKey("PK_Grievances", x => x.GrievanceId);
                 });
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "SecurityQuestions",
                 columns: table => new
                 {
@@ -59,7 +59,7 @@ namespace UniversitySharedDatabase.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SecurityQuestions", x => x.QuId);
-                });
+                });*/
 
             migrationBuilder.CreateTable(
                 name: "Services",
@@ -133,27 +133,27 @@ namespace UniversitySharedDatabase.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                        /*.Annotation("SqlServer:Identity", "1, 1"),*/
                     FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Dob = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuId = table.Column<int>(type: "int", nullable: false),
-                    SecurityAns = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                   /* QuId = table.Column<int>(type: "int", nullable: false),
+                    SecurityAns = table.Column<string>(type: "nvarchar(max)", nullable: false)*/
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
-                    table.ForeignKey(
+                    /*table.ForeignKey(
                         name: "FK_Users_SecurityQuestions_QuId",
                         column: x => x.QuId,
                         principalTable: "SecurityQuestions",
                         principalColumn: "QuId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Cascade);*/
                 });
 
             migrationBuilder.CreateTable(
@@ -363,7 +363,7 @@ namespace UniversitySharedDatabase.Migrations
                     { 3, "Technical Problem" }
                 });
 
-            migrationBuilder.InsertData(
+            /*migrationBuilder.InsertData(
                 table: "SecurityQuestions",
                 columns: new[] { "QuId", "Question" },
                 values: new object[,]
@@ -376,7 +376,7 @@ namespace UniversitySharedDatabase.Migrations
                     { 3, "What was your first car?" },
                     { 2, "What is the name of your first pet?" },
                     { 4, "What elementary school did you attend?" }
-                });
+                });*/
 
             migrationBuilder.InsertData(
                 table: "StatusFeilds",
@@ -453,10 +453,10 @@ namespace UniversitySharedDatabase.Migrations
                 table: "UserIdeas",
                 column: "UserId");
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_Users_QuId",
                 table: "Users",
-                column: "QuId");
+                column: "QuId");*/
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserServices_ServiceId",
@@ -513,8 +513,8 @@ namespace UniversitySharedDatabase.Migrations
             migrationBuilder.DropTable(
                 name: "Users");
 
-            migrationBuilder.DropTable(
-                name: "SecurityQuestions");
+           /* migrationBuilder.DropTable(
+                name: "SecurityQuestions");*/
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,7 @@ namespace ClubWebApp.Controllers
 {
     //Only Admin do work with these controllers.
     [Route("api/[controller]/[action]")]
+    /*[Authorize]*/
     [ApiController]
     public class ClubController : ControllerBase
     {

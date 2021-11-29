@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ using UniversitySharedDatabase.Models;
 namespace EventWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize]
     [ApiController]
     public class UserEventController : ControllerBase
     {
@@ -22,7 +24,6 @@ namespace EventWebApp.Controllers
 
         public async Task<IActionResult> CreateUserEvent([FromBody] UserEvent userEvent)
         {
-            /*var createUserEvent = new UserEvent() { UserId = userId, EventId = eventId };*/
 
             _context.UserEvents.Add(userEvent);
             await _context.SaveChangesAsync();
@@ -36,6 +37,7 @@ namespace EventWebApp.Controllers
         [Route("{userEventId}")]
         public async Task<IActionResult> UpdateUserEvent(int userEventId, [FromBody]UserEvent userEvent)
         {
+       
             var userEventDetails = await _context.UserEvents.FindAsync(userEventId);
 
             userEventDetails.Suggestion = userEvent.Suggestion;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +11,7 @@ using UniversitySharedDatabase.Models;
 namespace EventWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize]
     [ApiController]
     public class EventController : ControllerBase
     {
@@ -44,7 +46,7 @@ namespace EventWebApp.Controllers
         [Route("{filter}")]
         public async Task<IActionResult> GetAllEvents(string filter)
         {
-            if (filter == "Montly")
+            if (filter == "Monthly")
             {
                 var thisMonth = DateTime.Now.Month;
                 var eventList = await _context.Events.Where(e => e.StartDate.Month == thisMonth).ToListAsync();
@@ -114,7 +116,7 @@ namespace EventWebApp.Controllers
 
 
 
-        //Funtionality Not Need here u can update in user event
+        
         //Update Event Attendence
         [HttpGet]
         [Route("{eventId}")]
