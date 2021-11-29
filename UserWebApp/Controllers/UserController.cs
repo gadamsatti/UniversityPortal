@@ -11,7 +11,6 @@ using UniversitySharedDatabase.Models;
 namespace UserWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
-    /*[Authorize]*/
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -20,13 +19,13 @@ namespace UserWebApp.Controllers
 
         //User Can SignUp 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User user)
+        public async Task<IActionResult> CreateUser([FromBody] User user)
         {
             _context.Users.Add(user);
 
             await _context.SaveChangesAsync();
 
-            return Ok(user);
+            return Ok();
         }
 
 

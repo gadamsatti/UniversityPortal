@@ -11,15 +11,22 @@ using UniversitySharedDatabase.Models;
 namespace EventWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class EventController : ControllerBase
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
 
 
-        //creating an event by admin
+        [HttpGet]
+        public async Task<IActionResult> GetAllEvents()
+        {
+           var allEvents = await _context.Events.ToListAsync();
+            return Ok(allEvents);
+        }
 
+
+        //creating an event by admin
         [HttpPost]
         public async Task<IActionResult> CreateEvent([FromBody]Event eventData)
         {

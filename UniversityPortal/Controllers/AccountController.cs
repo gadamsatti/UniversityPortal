@@ -17,7 +17,7 @@ namespace UniversityPortal.Controllers
         static HttpClient svc = new HttpClient();
 
         static string baseUrlUserWebApp = "http://localhost:5004/";
-        /*"http://localhost:53892"*/
+
 
         private readonly IAccountRepository _accountRepository;
 
@@ -54,19 +54,26 @@ namespace UniversityPortal.Controllers
 
                 if(result.Succeeded)
                 {
-                    User user = new User()
-                    {
-                        UserId = userModel.UserId,
-                        FirstName = userModel.FirstName,
-                        LastName = userModel.LastName,
-                        UserName = userModel.FirstName +" "+ userModel.LastName,
-                        Dob=userModel.DateOfBirth,
-                        PhoneNo=userModel.ContactNo.ToString(),
-                        Email=userModel.Email,
-                        Password=userModel.Password
-                    };
+                    User user = new User();
 
-                    var item  =await svc.PostAsJsonAsync(baseUrlUserWebApp + "api/User/CreateUser",user);
+                    user.UserId = userModel.UserId;
+                    user.FirstName = userModel.FirstName;
+                    user.LastName = userModel.LastName;
+                    user.UserName = userModel.FirstName + " " + userModel.LastName;
+                    user.Dob = userModel.DateOfBirth;
+                    user.PhoneNo = userModel.ContactNo.ToString();
+                    user.Email = userModel.Email;
+                    user.Password = userModel.Password;
+              
+
+                    var item  = svc.PostAsJsonAsync(baseUrlUserWebApp + "api/User/CreateUser",user);
+                    item.Wait();
+
+                    var output = item.Result;
+                    if (output.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index","Home");
+                    }
 
                     //var data = await svc.GetFromJsonAsync<User>(baseUrlUserWebApp + "api/User/GetUserById/1170");
 

@@ -31,7 +31,7 @@ namespace UniversityPortal.Helper
             identity.AddClaim(new Claim("UserFirstName", user.FirstName ?? ""));
             identity.AddClaim(new Claim("UserLastName", user.LastName ?? ""));
             identity.AddClaim(new Claim("UserName", user.UserName ?? ""));
-
+            identity.AddClaim(new Claim("UserId", user.UserId.ToString() ?? ""));
             /*identity.AddClaim(claim: new Claim(){ user = user.UserId });*/
 
             return identity;

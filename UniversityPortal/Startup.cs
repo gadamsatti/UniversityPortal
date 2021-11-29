@@ -40,6 +40,10 @@ namespace UniversityPortal
             {
                 config.LoginPath = "/login";
             });
+#if DEBUG
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            //.AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = false);
+#endif
 
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
 

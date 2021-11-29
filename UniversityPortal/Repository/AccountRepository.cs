@@ -41,7 +41,7 @@ namespace UniversityPortal.Repository
             };
           var result = await _userManager.CreateAsync(user,userModel.Password);
             // Adding Roles to New User
-            await _userManager.AddToRoleAsync(user,"User");
+           
 
             return result;
         }

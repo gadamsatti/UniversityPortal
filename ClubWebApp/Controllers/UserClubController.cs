@@ -35,12 +35,12 @@ namespace ClubWebApp.Controllers
 
         //Admin Can Delete User from Club or User Can Leave Club
         [HttpDelete]
-        [Route("{clubId}")]
-        public async Task<IActionResult> DeleteUserClubDetails([FromRoute]int clubId,int userId)
+        [Route("{UserClubRegId}")]
+        public async Task<IActionResult> DeleteUserClubDetails([FromRoute]int UserClubRegId)
         {
             try
             {
-                var userClubDetails = await _context.UserClubs.Where(c => c.UserId == userId && c.ClubId ==clubId).FirstOrDefaultAsync();
+                var userClubDetails = await _context.UserClubs.Where(c => c.UserClubRegId == UserClubRegId).FirstOrDefaultAsync();
                  _context.UserClubs.Remove(userClubDetails);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -61,6 +61,23 @@ namespace ClubWebApp.Controllers
         {
             var clubMembers = await _context.UserClubs.Where(e=>e.ClubId==clubId).ToListAsync();
             return Ok(clubMembers);
+        }
+
+        [HttpGet]
+        [Route("{desgnationName}")]
+        public async Task<IActionResult> GetDesignationId(string desgnationName)
+        {
+            var desId = await _context.DesignationCouncils.Where(e => e.Designation == desgnationName).FirstOrDefaultAsync();
+            return Ok(desId.DesgId);
+        }
+
+
+        [HttpGet]
+        [Route("{desgnationId}")]
+        public async Task<IActionResult> GetDesignationName(int desgnationId)
+        {
+            var desname = await _context.DesignationCouncils.Where(e => e.DesgId ==desgnationId).FirstOrDefaultAsync();
+            return Ok(desname.Designation);
         }
 
     }

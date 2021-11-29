@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.ClubId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClubName)
+                <a asp-controller="Home" asp-action="ClubStudents" asp-route-clubId="@item.ClubId">@item.ClubName</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Details)
@@ -49,9 +49,8 @@
                 @Html.DisplayFor(modelItem => item.Eligibility)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditClub", new { id=item.ClubId, }) |
-                @Html.ActionLink("Details", "Clubs", new { id = item.ClubId }) |
-                @Html.ActionLink("Delete", "DeleteClub", new { id = item.ClubId })
+                @Html.ActionLink("Register", "RegisterForClub", new { clubId = item.ClubId }) |
+                @Html.ActionLink("Delete", "DeleteClub", new { clubId = item.ClubId })
             </td>
         </tr>
 }

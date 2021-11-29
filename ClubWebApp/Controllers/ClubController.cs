@@ -80,5 +80,12 @@ namespace ClubWebApp.Controllers
             return Ok(clubDetails);
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> ClubStudents(int clubId)
+        {
+            var clubDetails = await _context.Clubs.ToListAsync();
+            return Ok(clubDetails);
+        }
     }
 }
