@@ -1,0 +1,186 @@
+﻿@model UniversityPortal.Helper.EventDetailsHelper
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Eventdetails</title>
+</head>
+<body>
+
+
+    <div>
+        <h4>Event</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.EventId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.EventId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.EventName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.EventName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.StartDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.StartDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.EndDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.EndDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.Category)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.Category)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.ClubId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.ClubId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Event.TotalAttendedStudents)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Event.TotalAttendedStudents)
+            </dd>
+        </dl>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.EventId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.EventName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.ClubId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event.TotalAttendedStudents)
+                </th>
+                <th>
+
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model.SimilarEvents)
+            {
+                if (!(item.EventId == Model.Event.EventId))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClubId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAttendedStudents)
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                  UserId
+                </th>
+                <th>
+                    FirstName
+                </th>
+                <th>
+                   LastName
+                </th>
+                <th>
+                UserName
+                </th>
+                <th>
+                  PhoneNo
+                </th>
+                <th>
+                    Email
+                </th>
+   
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.AllUserRegister)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</body>
+</html>

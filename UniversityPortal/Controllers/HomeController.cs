@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using UniversityPortal.Helper;
 using UniversityPortal.Models;
 using UniversityPortal.Service;
 
@@ -30,7 +31,7 @@ namespace UniversityPortal.Controllers
 
         static string baseUrlEventWebApp = "http://localhost:5002/api/";
         static string baseUrlClubWebApp = "http://localhost:5001/api/";
-
+        static string baseUrlUserWebApp = "http://localhost:5004/api/";
         public HomeController(ILogger<HomeController> logger,IUserService userService, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
@@ -178,12 +179,73 @@ namespace UniversityPortal.Controllers
 
         }
 
-       /* List<Service> services = new List<Service>() { };*/
+        /* List<Service> services = new List<Service>() { };*/
+
+        public async Task<ActionResult> SortBycategory(string Category)
+        {
+            var categoryEvents = await svc.GetFromJsonAsync<List<Event>>(baseUrlEventWebApp + "Event/GetAllEventsByCategory/" + Category);
+            return View("Events", categoryEvents);
+        }
+
+        public async Task<ActionResult> Searching(string searching)
+        {
+            var searchEvent = await svc.GetFromJsonAsync<List<Event>>(baseUrlEventWebApp + "Event/GetEventByName/" + searching);
+            return View("Events", searchEvent);
+        }
+        public async Task<ActionResult> SortByDate(DateTime date1, DateTime date2)
+        {
+            var datestring1 = date1.ToShortDateString();
+            var datestring2  = date2.ToShortDateString();
+            var EventsByDate = await svc.GetFromJsonAsync<List<Event>>(baseUrlEventWebApp + "Event/GetEventDate/" + datestring1 + "/" + datestring2);
+
+            return View("Events", EventsByDate);
+        }
+
+        public async Task<ActionResult> Eventdetails(int eventId)
+        {
+            EventDetailsHelper eventDetails = new EventDetailsHelper();
+            eventDetails.Event = new Event();
+            eventDetails.Event = await svc.GetFromJsonAsync<Event>(baseUrlEventWebApp + "Event/GetEventById/" + eventId);
+            var Category = eventDetails.Event.Category;
+            eventDetails.SimilarEvents = new List<Event>();
+            eventDetails.SimilarEvents = await svc.GetFromJsonAsync<List<Event>>(baseUrlEventWebApp + "Event/GetAllEventsByCategory/" + Category);
+            var ListOfUser = await svc.GetFromJsonAsync<List<int>>(baseUrlEventWebApp + "UserEvent/GetAllUsersByEventId/" + eventId);
+            eventDetails.AllUserRegister = new List<User>();
+            foreach (var userDetails in ListOfUser)
+            {
+                var user = new User();
+                user = await svc.GetFromJsonAsync<User>(baseUrlUserWebApp + "User/GetUserById/" + userDetails);
+                eventDetails.AllUserRegister.Add(user);
+            }
+            return View(eventDetails);
+        }
+
+        public IActionResult RegisterForEvent(int eventId)
+        {
+
+            string userId = User.FindFirst("UserId").Value.ToString();
+            int employeeId = Int32.Parse(userId);
+            var model = new UserEventModel();
+            model.EventId = eventId;
+            model.UserId = employeeId;
+            var item = svc.PostAsJsonAsync(baseUrlEventWebApp + "UserEvent/CreateUserEvent", model);
+            item.Wait();
+
+            var output = item.Result;
+            if (output.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+
 
         public ActionResult Services()
         {
             return View();
         }
+       
 
     }
 }

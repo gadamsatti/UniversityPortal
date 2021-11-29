@@ -26,10 +26,10 @@ namespace UniversitySharedDatabase.Models
         public bool Attendence { get; set; }
 
 
-        [Required]
+        
         public bool LikesOrDislike { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Suggestion ")]
+       
         [StringLength(150, MinimumLength = 30)]
         [RegularExpression("^[A-Za-z]{4,30}$")]
         public string Suggestion { get; set; }

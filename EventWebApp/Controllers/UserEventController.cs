@@ -11,7 +11,7 @@ using UniversitySharedDatabase.Models;
 namespace EventWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class UserEventController : ControllerBase
     {
@@ -57,8 +57,7 @@ namespace EventWebApp.Controllers
         [Route("{eventId}")]
         public async Task<IActionResult> GetAllUsersByEventId(int eventId)
         {
-            var allUsersRegistered = await _context.UserEvents.Where(e => e.EventId == eventId).ToListAsync();
-
+            var allUsersRegistered = await _context.UserEvents.Where(e => e.EventId == eventId).Select(e=>e.UserId).ToListAsync();
             return Ok(allUsersRegistered);
         }
 

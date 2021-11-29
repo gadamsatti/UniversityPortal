@@ -104,9 +104,11 @@ namespace EventWebApp.Controllers
         //GetEvents Between Given Dates Dates
         [HttpGet]
         [Route("{startDate}/{endDate}")]
-        public async Task<IActionResult> GetEventDate(DateTime startDate, DateTime endDate)
+        public async Task<IActionResult> GetEventDate(string startDate, string endDate)
         {
-            var events=await _context.Events.Where(e => e.StartDate >= startDate && e.StartDate <= endDate).ToListAsync();
+            var date1 = DateTime.Parse(startDate);
+            var date2 = DateTime.Parse(endDate);
+            var events= await  _context.Events.Where(e => e.StartDate.Date >= date1.Date && e.StartDate.Date <= date2.Date).ToListAsync();
             return Ok(events);
         }
 
