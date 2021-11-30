@@ -1,40 +1,33 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+<ul class="navbar-nav">
+    @if (_signInManager.IsSignedIn(User))
+    {
 
-@if (_signInManager.IsSignedIn(User))
-{
-<ul>
-    <li> <a asp-action="Events" asp-controller="Home" class="btn">Upcoming Events</a></li>
-    <li><a asp-action="Clubs" asp-controller="Home" class="btn">Clubs</a></li>
-    <li> <a asp-action="Services" asp-controller="Home" class="btn">Services</a></li>
-    <li> <a asp-action="Suggestions" asp-controller="Home" class="btn">Suggestions</a></li>
-    <li> <a asp-action="Ideas" asp-controller="Home" class="btn">Idea</a></li>
+     
+        <li class="nav-item">
+            <a asp-controller="Home" asp-action="Profile" class="nav-link  btn btn-link text-dark">Hello, @User.FindFirst("UserFirstName").Value</a>
+        </li>
+
+        <li class="nav-item">
+            <a asp-action="Logout" asp-controller="Account" class="nav-link btn btn-link text-dark">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a asp-action="ChangePassword" asp-controller="Account" class="nav-link btn btn-link text-dark">Change Password</a>
+        </li>
+
+    }
+    else
+    {
+        <li class="nav-item">
+            <a asp-controller="Account" asp-action="Login" class="nav-link text-dark" asp-routr-returnUrl="@Context.Request.Path">Login</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Account" asp-action="signup" class="nav-link text-dark">Signup</a>
+        </li>
 
 
-
-    <li nav id="navbar" class="navbar">
-        <a class=" navbar" role="button">
-            Hello @(User.FindFirst("UserFirstName").Value + " " + @User.FindFirst("UserLastName").Value)
-        </a>
-    </li>
-    <li>
-
-        <a asp-action="Logout" asp-controller="Account" class="btn">Logout</a>
-
-    </li>
-    <li>
-
-        <a asp-action="ChangePassword" asp-controller="Account" class="btn">Change Password</a>
-
-
-    </li>
+    }
 </ul>
-}
-else
-{
-    <a asp-controller="Account" asp-action="Login" class="btn" asp-routr-returnUrl="@Context.Request.Path">Login</a>
-    <a asp-controller="Account" asp-action="signup" class="btn">Signup</a>
-}
-
 
 
 

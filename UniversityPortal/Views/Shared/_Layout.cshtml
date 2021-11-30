@@ -1,421 +1,58 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - University Management System</title>
+    <title>@ViewData["Title"] - University Portal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="~/Dummy/assets/img/favicon.png" rel="icon">
-    <link href="~/Dummy/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="~/Dummy/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="~/Dummy/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="~/Dummy/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Dummy/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="~/Dummy/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="~/Dummy/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="~/Dummy/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="~/Dummy/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center">
-
-            <h1 class="logo me-auto"><a>UNIVERSITY</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">University Portal</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (_signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-action="Events" asp-controller="Home">Upcoming Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-action="Clubs" asp-controller="Home">Clubs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-action="Services" asp-controller="Home">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-action="Suggestions" asp-controller="Home">Suggestions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-action="Ideas" asp-controller="Home" class="btn">Idea</a>
+                            </li>
+                        }
+                    </ul>
                     <partial name="_LoginInfo" />
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-
-            @*Login,Sinup and LogOut Partial View *@
-           
-
-
-
-
-        </div>
-    </header><!-- End Header -->
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex justify-content-center align-items-center">
-        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-            <h1>Learning Today,<br>Leading Tomorrow</h1>
-            <h2>Content that educates is not limited to manuals and textbooks</h2>
-
-            <a asp-controller="Account" asp-action="signup" class="btn-get-started">Get Started</a>
-        </div>
-    </section><!-- End Hero -->
-
-    <main id="main">
-
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
-
-                <div class="row">
-                    <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                        <img src="~/Dummy/assets/img/about.jpg" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                        <h3>Education is both the act of teaching knowledge to others and the act of receiving knowledge</h3>
-
-                        <p class="fst-italic">
-
-                            Academic clubs give students the ability to meet students with similar interests and engage in opportunities
-
-                        </p>
-                        <ul>
-
-                            <li><i class="bi bi-check-circle"></i>We have academic clubs for practical knowledge.</li>
-                            <li><i class="bi bi-check-circle"></i> We have activity clubs to develop the great Ideas.</li>
-                            <li><i class="bi bi-check-circle"></i> University also has clubs of their own persepective so that student can have chance to explore themseves in thier own interest. We Strive for student Excellence.</li>
-
-                        </ul>
-                        <p>
-                            University is where you can erupt all your skills and gain knowledge from all type of sources to excel in life
-
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End About Section -->
-        <!-- ======= Counts Section ======= -->
-        <section id="counts" class="counts section-bg">
-            <div class="container">
-
-                <div class="row counters">
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="1832" data-purecounter-duration="4" class="purecounter"></span>
-                        <p>Students</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="4" class="purecounter"></span>
-                        <p>Courses</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="4" class="purecounter"></span>
-                        <p>Events</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="4" class="purecounter"></span>
-                        <p>Trainers</p>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Counts Section -->
-
-
-        <br>
-        <br>
-        <!-- ======= Features Section ======= -->
-        <section id="features" class="features">
-            <div class="container" data-aos="fade-up">
-
-                <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="col-lg-3 col-md-4">
-                        <div class="icon-box">
-                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
-                            <h3>Stall Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                        <div class="icon-box">
-                            <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-                            <h3>Financial Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-                        <div class="icon-box">
-                            <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                            <h3>Planning Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-                        <div class="icon-box">
-                            <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-                            <h3>Chemistry Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-database-2-line" style="color: #47aeff;"></i>
-                            <h3>Data Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-                            <h3>Mentor Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-                            <h3>Content Writing</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-                            <h3>Branding Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-anchor-line" style="color: #b2904f;"></i>
-                            <h3>Sports Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-disc-line" style="color: #b20969;"></i>
-                            <h3>Music Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-base-station-line" style="color: #ff5828;"></i>
-                            <h3>Electrical Club</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 mt-4">
-                        <div class="icon-box">
-                            <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-                            <h3>Security Club</h3>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Features Section -->
-        <!-- ======= Popular Courses Section ======= -->
-        <section id="popular-courses" class="courses">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Courses</h2>
-                    <p>Popular Courses</p>
-                </div>
-
-                <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="course-item">
-                            <img src="~/Dummy/assets/img/course-1.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Web Development</h4>
-
-                                </div>
-
-                                <h3>Website Design</h3>
-
-                                <p>If you are someone with a knack for programming skills coupled with an eye for crafting stunning aesthetics</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="~/Dummy/assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                        <span>Antonio</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- End Course Item-->
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                        <div class="course-item">
-                            <img src="~/Dummy/assets/img/course-2.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Marketing</h4>
-
-                                </div>
-
-                                <h3>Search Engine Optimization</h3>
-
-                                <p>Search engine optimization is the process of improving the quality of website traffic to a website or a web page from search engines.</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="~/Dummy/assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                                        <span>Lana</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- End Course Item-->
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <div class="course-item">
-                            <img src="~/Dummy/assets/img/course-3.jpg" class="img-fluid" alt="...">
-                            <div class="course-content">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4>Content</h4>
-
-                                </div>
-
-                                <h3>Copywriting</h3>
-                                <p>Copywriting is the act or occupation of writing text for the purpose of advertising or other forms of marketing</p>
-                                <div class="trainer d-flex justify-content-between align-items-center">
-                                    <div class="trainer-profile d-flex align-items-center">
-                                        <img src="~/Dummy/assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
-                                        <span>Brandon</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- End Course Item-->
-
-                </div>
-
-            </div>
-        </section><!-- End Popular Courses Section -->
-        <!-- ======= Trainers Section ======= -->
-        <section id="trainers" class="trainers">
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h2>Trainers</h2>
-
-                </div>
-                <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="member">
-                            <img src="~/Dummy/assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                            <div class="member-content">
-                                <h4>Walter White</h4>
-                                <span>Web Development</span>
-                                <p>
-                                    If you are someone with a knack for programming skills coupled with an eye for crafting stunning aesthetics then this is for you
-                                </p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="member">
-                            <img src="~/Dummy/assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                            <div class="member-content">
-                                <h4>Sarah Jhinson</h4>
-                                <span>Marketing</span>
-                                <p>
-                                    If you are someone with a knack for programming skills coupled with an eye for crafting stunning aesthetics
-                                </p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="member">
-                            <img src="~/Dummy/assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
-                            <div class="member-content">
-                                <h4>William Anderson</h4>
-                                <span>Content</span>
-                                <p>
-                                    Copywriting is the act or occupation of writing text for the purpose of advertising or other forms of marketing
-                                </p>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Trainers Section -->
-
-    </main>
-
-    @RenderBody()
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-
-                    <div class="container d-md-flex py-4">
-
-                        <div class="me-md-auto text-center text-md-start">
-                            <div class="copyright">
-                                &copy; Copyright <strong><span>POD4</span></strong>. All Rights Reserved
-                            </div>
-                            <div class="credits">
-                                <!-- All the links in the footer should remain intact. -->
-                                <!-- You can delete the links only if you purchased the pro version. -->
-                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-                                Designed by <a>POD4</a>
-                            </div>
-                        </div>
-                        <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </footer><!-- End Footer -->
-    <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
-    <!-- Vendor JS Files -->
-    <script src="~/Dummy/assets/vendor/purecounter/purecounter.js"></script>
-    <script src="~/Dummy/assets/vendor/aos/aos.js"></script>
-    <script src="~/Dummy/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Dummy/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="~/Dummy/assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="~/Dummy/assets/js/main.js"></script>
-    @RenderSection("Scripts", required: false)
+   
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

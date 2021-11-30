@@ -1,54 +1,46 @@
 ﻿@model UniversityPortal.Models.Club
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Create Club";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateClub</title>
-</head>
-<body>
 
-<h4>Club</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateClub">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ClubId" class="control-label"></label>
-                <input asp-for="ClubId" class="form-control" />
-                <span asp-validation-for="ClubId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClubName" class="control-label"></label>
-                <input asp-for="ClubName" class="form-control" />
-                <span asp-validation-for="ClubName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Details" class="control-label"></label>
-                <input asp-for="Details" class="form-control" />
-                <span asp-validation-for="Details" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Eligibility" class="control-label"></label>
-                <input asp-for="Eligibility" class="form-control" />
-                <span asp-validation-for="Eligibility" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>Club</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CreateClub">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ClubId" class="control-label"></label>
+                    <input asp-for="ClubId" class="form-control" />
+                    <span asp-validation-for="ClubId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClubName" class="control-label"></label>
+                    <input asp-for="ClubName" class="form-control" />
+                    <span asp-validation-for="ClubName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Details" class="control-label"></label>
+                    <input asp-for="Details" class="form-control" />
+                    <span asp-validation-for="Details" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Eligibility" class="control-label"></label>
+                    <input asp-for="Eligibility" class="form-control" />
+                    <span asp-validation-for="Eligibility" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Clubs">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Clubs">Back to List</a>
+    </div>
 
-</body>
-</html>

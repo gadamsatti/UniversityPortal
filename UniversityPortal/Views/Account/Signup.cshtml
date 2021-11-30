@@ -1,154 +1,96 @@
 ﻿@model UniversityPortal.Models.SignUpUserModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>University Login</title>
-    <link rel="stylesheet" type="text/css" href="~/Dummy/assets/css/signupcss.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                        <form asp-action="SignUp" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <img class="wave" src="~/Dummy/assets/img/wave.png">
-    <div class="container">
-        <div class="img">
-            <img src="~/Dummy/assets/img/bg.svg">
-        </div>
-        <div class="login-content">
-            <form method="post" asp-action="Signup">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group ">
 
+                                        <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
 
-                <img src="~/Dummy/assets/img/avatar.svg">
-                <h3>University</h3>
+                                        <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
 
-                <br>
+                                <input asp-for="Email" class="form-control" placeholder="Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
 
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Firstname</h5>
-                        <input asp-for="FirstName" name="FirstName" type="text" class="input form-control">
-                    </div>
+                                        <input asp-for="ContactNo" class="form-control" placeholder="Contact No" />
+                                        <span asp-validation-for="ContactNo" class="text-danger"></span>
 
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
 
+                                        <input asp-for="UserId" class="form-control" placeholder="User ID" />
+                                        <span asp-validation-for="UserId" class="text-danger"></span>
+                                    </div>
 
-                </div>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Lastname</h5>
-                        <input type="text" asp-for="LastName" class="input" asp-validation-for="LastName">
-                    </div>
-                </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
 
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fal fa-calendar-check  "></i>
-                    </div>
+                                        <input asp-for="Gender" class="form-control" placeholder="Gender" />
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
 
-                    <div class="div">
-                        <h5>DateofBirth</h5>
-                        <input type="date" asp-for="DateOfBirth" class="input" asp-validation-for="DateOfBirth">
-                    </div>
-                </div>
+                                        <input asp-for="DateOfBirth" class="form-control" placeholder="Date Of Birth" />
+                                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                    </div>
 
+                                </div>
+                            </div>
 
+                            <div class="form-group mb-4">
 
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="ffa fa-neuter"></i>
-                    </div>
+                                <input asp-for="Password" class="form-control" placeholder="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-4">
 
-                    <div class="div">
-                        <h5>Gender</h5>
-                        <input type="text" asp-for="Gender" class="input" required>
-                    </div>
-                </div>
-
-
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-mobile"></i>
-                    </div>
-
-                    <div class="div">
-                        <h5>Mobile.No</h5>
-                        <input type="tel" asp-for="ContactNo" class="input" required>
-                    </div>
-                </div>
-
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-mobile"></i>
-                    </div>
-
-                    <div class="div">
-                        <h5>User ID</h5>
-                        <input type="number" asp-for="UserId" class="input" required>
+                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Register" class="btn btn-success btn-block btn-lg" />
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-paper-plane"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Email</h5>
-                        <input type="email" asp-for="Email" class="input" required>
-                    </div>
-                </div>
-
-
-                <!------------------------------------------------------>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Password</h5>
-                        <input type="password" asp-for="Password" class="input">
-                    </div>
-                </div>
-
-
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <h5>ConfirmPassword </h5>
-                        <input type="password" asp-for="ConfirmPassword" class="input">
-                    </div>
-                </div>
-
-
-                <input type="submit" class="btn" name="Submit" value="Signup">
-
-                <div>
-                    <p>Click <a asp-action="Login" asp-controller="Account">here</a> to Login</p>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-    <script type="text/javascript" src="~/Dummy/assets/js/loginmain.js"></script>
-
-
-</body>
-</html>
-
-
-
-
+</section>

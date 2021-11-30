@@ -1,118 +1,125 @@
 ﻿@model IEnumerable<UniversityPortal.Models.Event>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "All Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Events</title>
-</head>
-<body>
     <p>
         <a asp-action="Event">Create New</a>
     </p>
-    <form method="post" enctype="multipart/form-data" asp-action="Searching">
-        <div class="form-group">
-            <input type="text" class=" ml-2 form-control" id="date" placeholder="Search" name="searching" />
-        </div>
-        <input type="submit" value="Get It!" class="mt-2 btn btn-outline-primary" />
-    </form>
-    <form method="post" enctype="multipart/form-data" asp-action="SortBycategory">
-        @{List<string> categorys = new List<string>() { "Games", "Fest", "Learning" }; }
-        @foreach (var i in categorys)
-        {
-            <label class="form-check">
-                @Html.RadioButton("Category", i)
-                <span class="form-check-label">
-                    @i
-                </span>
-            </label>
+    <div class="row">
+        <div class="col-sm-3">
 
-        }
-        <input type="submit" value="Get It!" class="mt-2 btn btn-outline-primary" />
-    </form>
-    <form method="post" enctype="multipart/form-data" asp-action="SortByDate">
-        <div class="form-group">
-            <label for="Date">Date</label>
-            <input type="date" class="form-control" id="date" placeholder="Sort By Posted Date" name="date1">
-        </div>
-        <div class="form-group">
-            <label for="Date">Date</label>
-            <input type="date" class="form-control" id="date" placeholder="Sort By Posted Date" name="date2">
-        </div>
-        <input type="submit" value="Get It!" class="mt-2 btn btn-outline-primary" />
-    </form>
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Search by Event Name </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.EventId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EventName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ClubId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TotalAttendedStudents)
-                </th>
-                <th>
-                   
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EndDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClubId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TotalAttendedStudents)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Register", "RegisterForEvent", new {  eventId=item.EventId}) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                    <td>
-                        <a asp-action="Eventdetails" asp-route-eventId="@item.EventId">View details</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</body>
-</html>
+                            <form method="post" enctype="multipart/form-data" asp-action="Searching">
+                                <div class="form-group">
+                                    <input type="text" class=" ml-2 form-control" id="date" placeholder="Search" name="searching" />
+                                </div>
+                                <input type="submit" value="Get It!" class="mt-2 btn btn-outline-primary" />
+                            </form>
+
+                        </div>
+                    </div>
+                </article>
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Choose Category</h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data" asp-action="SortBycategory">
+                                @{List<string> categorys = new List<string>() { "Games", "Fest", "Learning" }; }
+                                @foreach (var i in categorys)
+                                {
+                                    <label class="form-check">
+                                        @Html.RadioButton("Category", i)
+                                        <span class="form-check-label">
+                                            @i
+                                        </span>
+                                    </label>
+
+                                }
+                                <input type="submit" value="Get It!" class="mt-2 btn btn-outline-primary" />
+                            </form>
+
+                        </div>
+                    </div>
+                </article>
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Choose By Events between Dates </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data" asp-action="SortByDate">
+                                <div class="form-group">
+                                    <label for="Date">Start Date</label>
+                                    <input type="date" class="form-control" id="date" placeholder="Sort By Posted Date" name="date1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Date">End Date</label>
+                                    <input type="date" class="form-control" id="date" placeholder="Sort By Posted Date" name="date2">
+                                </div>
+                                <input type="submit" value="Get It!" class="mt-2 btn btn-outline-primary" />
+                            </form>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                      
+                        <th>
+                            @Html.DisplayNameFor(model => model.EventName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndDate)
+                        </th>
+                        <th>
+
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            
+                            <td>
+                                @Html.ActionLink("Register", "RegisterForEvent", new { eventId = item.EventId }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })|
+                                @Html.ActionLink("View Details" , "Eventdetails" , new { eventId = item.EventId})
+                            </td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+       </div>
+</div>

@@ -1,60 +1,54 @@
 ﻿@model IEnumerable<UniversityPortal.Models.Club>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Clubs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Clubs</title>
-</head>
-<body>
-<p>
-    <a asp-action="CreateClub">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ClubId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClubName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Details)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Eligibility)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClubId)
-            </td>
-            <td>
-                <a asp-controller="Home" asp-action="ClubStudents" asp-route-clubId="@item.ClubId">@item.ClubName</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Eligibility)
-            </td>
-            <td>
-                @Html.ActionLink("Register", "RegisterForClub", new { clubId = item.ClubId }) |
-                @Html.ActionLink("Delete", "DeleteClub", new { clubId = item.ClubId })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</body>
-</html>
+
+    <p>
+        <a asp-action="CreateClub">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClubId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClubName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Eligibility)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClubId)
+                    </td>
+                    <td>
+                        <a asp-controller="Home" asp-action="ClubStudents" asp-route-clubId="@item.ClubId">@item.ClubName</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Eligibility)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Register", "RegisterForClub", new { clubId = item.ClubId }) |
+                        @Html.ActionLink("Delete", "DeleteClub", new { clubId = item.ClubId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
