@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UniversityPortal.Models.SuggestionsModel>
+
+@{
+    ViewData["Title"] = "AllSuggestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AllSuggestions</h1>
+
+<p>
+    <a asp-action="CreateSuggestions">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrievanceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Problem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResolutionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reply)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferenceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrievanceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Problem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResolutionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reply)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "EditSuggestions", new { referenceID = item.ReferenceId }) 
+              
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

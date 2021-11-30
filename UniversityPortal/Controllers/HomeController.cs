@@ -32,6 +32,7 @@ namespace UniversityPortal.Controllers
         static string baseUrlEventWebApp = "http://localhost:5002/api/";
         static string baseUrlClubWebApp = "http://localhost:5001/api/";
         static string baseUrlUserWebApp = "http://localhost:5004/api/";
+        static string baseUrlGrievance = "http://localhost:5003/api/";
         public HomeController(ILogger<HomeController> logger,IUserService userService, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
@@ -241,11 +242,101 @@ namespace UniversityPortal.Controllers
 
         //-------------------------------------------------------Services--------------------------------
 
-        public ActionResult Services()
+        public async Task<ActionResult> AllServices()
         {
+            var allServices = await svc.GetFromJsonAsync<List<ServiceModel>>(baseUrlEventWebApp + "Service/GetAllServices");
+            return View(allServices);
+
+        }
+        public ActionResult CreateServices()
+        {
+            return View(); 
+        }
+        [HttpPost]
+        public ActionResult CreateServices(ServiceModel serviceModel)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                var item = svc.PostAsJsonAsync<ServiceModel>(baseUrlEventWebApp + "Service/CreateService", serviceModel);
+                item.Wait();
+
+                var output = item.Result;
+                if (output.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            ModelState.AddModelError("", "Invalid Deatils");
+
+            return View(serviceModel);
+        }
+
+
+        //-----------------------------------------------------------Suggestions-------------------------
+        public async Task<ActionResult> AllSuggestions()
+        {
+            var allSuggestions = await svc.GetFromJsonAsync<List<SuggestionsModel>>(baseUrlGrievance + "UserGrievance/GetAllGrievances");
+            return View(allSuggestions);
+        }
+        public async Task<ActionResult> CreateSuggestions()
+        {
+           
+            ViewBag.Gravience = await SuggestionsHelper.GetAllGravience();
             return View();
         }
-       
+        [HttpPost]
+        public ActionResult CreateSuggestions(SuggestionsModel suggestions)
+        {
+            string userId = User.FindFirst("UserId").Value.ToString();
+            int employeeId = Int32.Parse(userId);
+            suggestions.UserId = employeeId;
+            suggestions.Date = DateTime.Now;
+            suggestions.StatusId = 1;
+            if (suggestions.GrievanceId == 1)
+            {
+                suggestions.ResolutionDate = DateTime.Now.AddDays(2);
+            }
+            else if (suggestions.GrievanceId == 3)
+            {
+                suggestions.ResolutionDate = DateTime.Now.AddDays(3);
+            }
+            else
+            {
+                suggestions.ResolutionDate = DateTime.Now.AddDays(1);
+            }
+
+
+
+            if (ModelState.IsValid)
+            {
+                var item = svc.PostAsJsonAsync(baseUrlGrievance + "UserGrievance/CreateUserGrievance", suggestions);
+                item.Wait();
+
+                var output = item.Result;
+                if (output.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            ModelState.AddModelError("", "Invalid Deatils");
+
+            return View(suggestions);
+        }
+
+        public async Task<ActionResult> EditSuggestions(int referenceID)
+        {
+            var suggestions =await svc.GetFromJsonAsync<SuggestionsModel>(baseUrlGrievance + "UserGrievance/GetUserGravienceByID/"+ referenceID);
+            ViewBag.Suggestions = await SuggestionsHelper.GetAllStatus();
+            return View(suggestions);
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditSuggestions(SuggestionsModel suggestionsModel)
+        {
+             await svc.PutAsJsonAsync(baseUrlGrievance + "UserGrievance/UpdateUserGrievance/" + suggestionsModel.ReferenceId,suggestionsModel);
+            return RedirectToAction("Index", "Home");
+        }
+
 
     }
 }

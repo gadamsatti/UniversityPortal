@@ -10,7 +10,7 @@ using UniversitySharedDatabase.Models;
 namespace GrievanceAndIdeasWebApp.Controllers
 {
     [Route("api/[controller][action]")]
-    [Authorize]
+  //  [Authorize]
     [ApiController]
     public class UserIdeaController : ControllerBase
     {

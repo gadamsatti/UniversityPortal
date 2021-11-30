@@ -14,14 +14,10 @@ namespace UniversitySharedDatabase.Models
         public int ServiceId { get; set; }
         [Required(ErrorMessage = "Please ServiceName e.g. Hawkins")]
         [DisplayName("ServiceName")]
-        [StringLength(30, MinimumLength = 5)]
-        [RegularExpression("^[A-Za-z]{4,30}$")]
         public string ServiceName { get; set; }
 
 
         [Required]
-        [StringLength(150, MinimumLength = 30)]
-        [RegularExpression("^[A-Za-z]{4,30}$")]
         public string Description { get; set; }
 
 
@@ -34,7 +30,7 @@ namespace UniversitySharedDatabase.Models
         [Required]
         public int VolunteerCount { get; set; }
 
-        public ICollection<UserService> UserServices { get; set; }
+        //public ICollection<UserService> UserServices { get; set; }
 
     }
 }

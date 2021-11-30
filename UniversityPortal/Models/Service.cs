@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UniversityPortal.Models
 {
-    public class Service
+    public class ServiceModel
     {
        
         public int ServiceId { get; set; }

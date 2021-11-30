@@ -11,11 +11,20 @@ using UniversitySharedDatabase.Models;
 namespace EventWebApp.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class ServiceController : ControllerBase
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllServices()
+        {
+           var ListOfServices =await _context.Services.ToListAsync();
+            return Ok(ListOfServices);
+        }
 
         // Create New Service By Admin
 
